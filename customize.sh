@@ -80,9 +80,11 @@ MODEL=$($MODBINPATH/fdtget $MODDTBOPATH/dtbo.dtbo.0 / model)
 if [ "$MODEL" == "Sony Mobile Communications. PDX-203(KONA)" ]; then
   ui_print "**  当前机型为Xperia 1 II             **"
   $MODBINPATH/fdtoverlay -i $MODDTBOPATH/dtbo.dtbo.0 -o $MODDTBOPATH/new_dtbo.dtbo $MODDTBOPATH/overlay_pdx203.dtbo
+  rm $MODPATH/system/system_ext/overlay/FrameworkRes-PDX206-Overlay.apk
 elif [ "$MODEL" == "Sony Mobile Communications. PDX-206(KONA)" ]; then
   ui_print "**  当前机型为Xperia 5 II             **"
   $MODBINPATH/fdtoverlay -i $MODDTBOPATH/dtbo.dtbo.0 -o $MODDTBOPATH/new_dtbo.dtbo $MODDTBOPATH/overlay_pdx206.dtbo
+  rm $MODPATH/system/system_ext/overlay/FrameworkRes-PDX203-Overlay.apk
 else
   ui_print "**  不支持此机型                      **"
   abort "***************************************"
