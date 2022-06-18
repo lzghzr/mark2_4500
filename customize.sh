@@ -32,16 +32,6 @@ else
   abort "***************************************"
 fi
 
-# 清理历史遗留文件
-POSTFSDATA=/data/adb/post-fs-data.d/mark2_4500.sh
-SDCARDDATA=/sdcard/.mark2_4500
-if [ -f $POSTFSDATA ]; then
-  rm $POSTFSDATA
-fi
-if [ -f $SDCARDDATA ]; then
-  rm $SDCARDDATA
-fi
-
 # 显示警告信息
 warning
 
@@ -80,11 +70,11 @@ MODEL=$($MODBINPATH/fdtget $MODDTBOPATH/dtbo.dtbo.0 / model)
 if [ "$MODEL" == "Sony Mobile Communications. PDX-203(KONA)" ]; then
   ui_print "**  当前机型为Xperia 1 II             **"
   $MODBINPATH/fdtoverlay -i $MODDTBOPATH/dtbo.dtbo.0 -o $MODDTBOPATH/new_dtbo.dtbo $MODDTBOPATH/overlay_pdx203.dtbo
-  rm $MODPATH/system/system_ext/overlay/FrameworkRes-PDX206-Overlay.apk
+  rm $MODPATH/system/product/overlay/FrameworkRes-PDX206-Overlay.apk
 elif [ "$MODEL" == "Sony Mobile Communications. PDX-206(KONA)" ]; then
   ui_print "**  当前机型为Xperia 5 II             **"
   $MODBINPATH/fdtoverlay -i $MODDTBOPATH/dtbo.dtbo.0 -o $MODDTBOPATH/new_dtbo.dtbo $MODDTBOPATH/overlay_pdx206.dtbo
-  rm $MODPATH/system/system_ext/overlay/FrameworkRes-PDX203-Overlay.apk
+  rm $MODPATH/system/product/overlay/FrameworkRes-PDX203-Overlay.apk
 else
   ui_print "**  不支持此机型                      **"
   abort "***************************************"
