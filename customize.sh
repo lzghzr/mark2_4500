@@ -14,7 +14,7 @@ warning () {
 
 # 首次安装提示
 TIMESTAMP=`date +%s`
-DIRPATH=/data/adb/mark2_4500 
+DIRPATH=/data/adb/mark2_4500
 if [ -d $DIRPATH ]; then
   DIRTIMESTAMP=`stat -c %Y $DIRPATH`
   TIMECHA=$(( $DIRTIMESTAMP - $TIMESTAMP + 300 ))
@@ -70,11 +70,15 @@ MODEL=$($MODBINPATH/fdtget $MODDTBOPATH/dtbo.dtbo.0 / model)
 if [[ "$MODEL" =~ "PDX-203" ]]; then
   ui_print "**  当前机型为Xperia 1 II             **"
   $MODBINPATH/fdtoverlay -i $MODDTBOPATH/dtbo.dtbo.0 -o $MODDTBOPATH/new_dtbo.dtbo $MODDTBOPATH/overlay_pdx203.dtbo
-  rm $MODPATH/system/product/overlay/FrameworkRes-PDX206-Overlay.apk
+  rm $MODPATH/system/product/overlay/FrameworkRes-PDX206-PowerProfile.apk
+elif [[ "$MODEL" =~ "PDX-204" ]]; then
+  ui_print "**  当前机型为Xperia Pro              **"
+  $MODBINPATH/fdtoverlay -i $MODDTBOPATH/dtbo.dtbo.0 -o $MODDTBOPATH/new_dtbo.dtbo $MODDTBOPATH/overlay_pdx203.dtbo
+  rm $MODPATH/system/product/overlay/FrameworkRes-PDX206-PowerProfile.apk
 elif [[ "$MODEL" =~ "PDX-206" ]]; then
   ui_print "**  当前机型为Xperia 5 II             **"
   $MODBINPATH/fdtoverlay -i $MODDTBOPATH/dtbo.dtbo.0 -o $MODDTBOPATH/new_dtbo.dtbo $MODDTBOPATH/overlay_pdx206.dtbo
-  rm $MODPATH/system/product/overlay/FrameworkRes-PDX203-Overlay.apk
+  rm $MODPATH/system/product/overlay/FrameworkRes-PDX203-PowerProfile.apk
 else
   ui_print "**  不支持此机型                      **"
   abort "***************************************"
